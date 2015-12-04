@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'motorapp',
 )
 
@@ -106,3 +107,9 @@ USE_TZ = True
 
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+# Database structure schema
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
+}
