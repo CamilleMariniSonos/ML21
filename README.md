@@ -22,5 +22,20 @@ Some ideas:
 - [ ] view and template to define a problem associated with the dataset (classification, regression, or clustering)    
 - [ ] command to apply all existing scikit learn estimators to solve the problem  
 - [ ] view and template to compare the results of the different estimators (and details for each estimators: best parameters) 
+- 
+
+### Algorithmics
+- [ ] Preprocessing : standardization, missing values, etc.
+- [ ] Feature engineering : feature selection, feature transformation, signal processing, dimensionality reduction, unsupervised learning
+- [ ] Classification and regression : scikit-learn + other libraries (deep learning with theano or tensorflow, gradient boosting with xgboost, etc.)
+- [ ] Hyper-parameter optimization : grid-search, random search, heuristics, general purpose global optimization algorithms
+- [ ] Combination of multiple algorithms : in series (PCA+SVM -> output) or in parallel (SVM || random forest -> averaged prediction)
+- [ ] Automatic detection of the type of data/problem : time-series regression ? image classification ? etc.
+
+### Computing
+- [ ] Parallelization 
+- [ ] Where are the computations done : locally on the user computer ? on a dedicated server ? on the cloud ? 
+- [ ] Do we need funding ? Public or private ?
+
 
 
