@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block header %}
+
+Upload your Dataset!
+
+{% endblock header %}
+
+{% block content %}
+Choose the files you want to upload as dataset<br>
+Blabla details on the file format... <br>
+
+
+<form action="{% url 'motorapp:upload_dataset' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>{{ form.file.label_tag }} {{ form.file.help_text }}
+                {{ form.file.errors }}
+                {{ form.file }}
+            </p>
+            <p>
+                {{ form.description.label_tag }} {{ form.description.help_text }}  
+                {{ form.description }}
+            </p>
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+            {% if success %}
+                <p>{{ success }}</p>
+            {% endif %}
+            <p><input type="submit" value="Upload" /></p>
+</form>
+{% endblock content %}
+
