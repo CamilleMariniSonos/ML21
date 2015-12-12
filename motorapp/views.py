@@ -25,7 +25,8 @@ def upload_dataset(request):
                 newdataset.save()
                 context['success'] = 'So far, so good! Your dataset has been uploaded!'
             else:
-                context['error'] = 'Oups, this description already exists, change it!'
+                context['error'] = 'Oups, your dataset has not been uploaded, since \
+                                    this description already exists, change it!'
     else:
         form = UploadFileForm()
     context['form'] = form
