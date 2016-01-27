@@ -32,3 +32,8 @@ def upload_dataset(request):
     context['form'] = form
     return render_to_response('motorapp/upload_dataset.html', context,
                               context_instance=RequestContext(request))
+
+def problem_definition(request):
+    context = {}
+    return render_to_response('motorapp/problem_definition.html', context,
+                              ontext_instance=RequestContext(request))
