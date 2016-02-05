@@ -36,10 +36,10 @@ class Problem(models.Model):
         ('REG', 'regression'),
     )
     pb_type = models.CharField(max_length=3, choices=PB_CHOICES, null=True, blank=True)
-    cost_function = models.CharField(max_length=200, null=True, blank=True)
-    target = models.FileField(max_length=200, null=True, blank=True)
-    description = models.CharField(max_length=300, null=True, blank=True)
-    train_prop = models.IntegerField(default=68, null=True, blank=True)
+    # cost_function = models.CharField(max_length=200, null=True, blank=True)
+    # target = models.FileField(max_length=200, null=True, blank=True)
+    # description = models.CharField(max_length=300, null=True, blank=True)
+    # train_prop = models.IntegerField(default=68, null=True, blank=True)
     def __unicode__(self):
         return self.description
 
