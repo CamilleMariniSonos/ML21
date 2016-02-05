@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block header %}
+
+Upload your Dataset!
+
+{% endblock header %}
+
+{% block content %}
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card"> 
+        <div class="card-body">
+            <div class="panel fresh-color panel-warning">
+                <div class="panel-heading">
+                    <b>Supported file format:</b>
+                </div>
+                <div class="panel-body">
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form action="{% url 'motorapp:upload_dataset' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <p>{{ form.file.label_tag }} 
+                                {{ form.file.errors }}
+                                {{ form.file }}
+                            </p>
+                            <p>
+                                {{ form.description.label_tag }} {{ form.description.help_text }}  
+                                {{ form.description }}
+                            </p>
+                            {% if error %}
+                                <p><font color="#FA2A00">{{ error }}</font></p>
+                            {% endif %}
+                            {% if success %}
+                                <p><font color="#FA2A00">{{ success }}</font></p>
+                            {% endif %}
+                            <p><input type="submit" value="Upload your dataset!" /></p>
+                     </form>
+                 </div>
+            </div> 
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
