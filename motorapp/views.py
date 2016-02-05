@@ -1,9 +1,10 @@
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.views.generic import ListView
-from motorapp.models import Dataset
+from motorapp.models import Dataset, Problem
 #from motorapp.management.commands import upload_dataset
 from .forms import UploadFileForm
+import task
 
 def welcome(request):
     context = {'main_info': 'oh yeah'}
@@ -23,7 +24,13 @@ def upload_dataset(request):
                 newdataset = Dataset(description=form.cleaned_data['description'], \
                                                 raw_data=request.FILES['file'])
                 newdataset.save()
+                newproblem = Problem(dataset=newdataset,
+                                     pb_type=form.cleaned_data['pb_type'])
+                newproblem.save()
                 context['success'] = 'So far, so good! Your dataset has been uploaded!'
+                score = task.train_test(newdataset.raw_data.path,
+                                        newproblem.pb_type)
+                context['score'] = score
             else:
                 context['error'] = 'Oups, your dataset has not been uploaded, since \
                                     this description already exists, change it!'

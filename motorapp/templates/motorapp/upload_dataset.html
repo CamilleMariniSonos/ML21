@@ -32,11 +32,16 @@ Upload your Dataset!
                                 {{ form.description.label_tag }} {{ form.description.help_text }}  
                                 {{ form.description }}
                             </p>
+                            <p>
+                                {{ form.pb_type.label_tag }}   
+                                {{ form.pb_type }}
+                            </p>
                             {% if error %}
                                 <p><font color="#FA2A00">{{ error }}</font></p>
                             {% endif %}
                             {% if success %}
                                 <p><font color="#FA2A00">{{ success }}</font></p>
+                                <p>Spoon score: {{ score }} </p>
                             {% endif %}
                             <p><input type="submit" value="Upload your dataset!" /></p>
                      </form>

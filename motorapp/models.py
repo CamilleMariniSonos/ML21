@@ -41,7 +41,7 @@ class Problem(models.Model):
     # description = models.CharField(max_length=300, null=True, blank=True)
     # train_prop = models.IntegerField(default=68, null=True, blank=True)
     def __unicode__(self):
-        return self.description
+        return self.pb_type  # description
 
 class Features(models.Model):
     """Class about the feature table
