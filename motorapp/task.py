@@ -1,12 +1,15 @@
 # from __future__ import absolute_import
 # from celery import shared_task
+import json
 import numpy as np
 import pandas as pd
-from sklearn.cross_validation import train_test_split
+import sklearn
+# from sklearn.cross_validation import train_test_split
 from sklearn import grid_search
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import Ridge
-# import sklearn.metrics as skm
+import sklearn.linear_model
+import sklearn.ensemble
+import sklearn.svm
+import sklearn.neighbors
 
 
 def read_data(filename):
@@ -37,14 +40,18 @@ def test(model, X_test, y_test):
 
 # @shared_task
 def train_test(filename, pb_type):
-    if pb_type == 'CLF':
-        dict_param = {'n_estimators': range(12, 142, 10)}
-        model = RandomForestClassifier()
-    else:
-        dict_param = {'alpha': np.logspace(-3, 3, num=7, base=10)}
-        model = Ridge()
     X, y = read_data(filename)
     X_train, X_test, y_train, y_test = split_data(X, y, test_size=0.5)
-    model = train(model, X_train, y_train, dict_param)
-    score = test(model, X_test, y_test)
-    return score
+    with open('list_estimators.json', 'r') as ff:
+        sklearn_estimators = json.load(ff)
+    dict_problem = {'CLF': 'classifier', 'REG': 'regressor'}
+    dict_score = {}
+    for estimator in sklearn_estimators[dict_problem[pb_type]]:
+        if 'CV' in estimator[1]:
+            model = getattr(getattr(sklearn, estimator[0]), estimator[1])()
+            # dict_all_param = estimator[2]
+            # model = train(model, X_train, y_train, dict_param)
+            model.fit(X_train, y_train)
+            score = test(model, X_test, y_test)
+            dict_score[estimator[1]] = score
+    return dict_score

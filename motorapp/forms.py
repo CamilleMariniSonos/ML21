@@ -9,13 +9,14 @@ class UploadFileForm(forms.Form):
                                   help_text='blabla max: 300 char')
     file = forms.FileField(max_length=100, label='Select a dataset file',
                                    help_text='Read uploading instructions...')
-    PB_CHOICES = (
-        ('REG', 'regression'),
-        ('CLF', 'classification'),
-                  )
-    pb_type = forms.ChoiceField(choices=PB_CHOICES, label='Type:')
+#    PB_CHOICES = (
+#        ('REG', 'regression'),
+#        ('CLF', 'classification'),
+#                  )
+#    pb_type = forms.ChoiceField(choices=PB_CHOICES, label='Type:')
 
-# class ProblemForm(ModelForm):
-#     class Meta:
-#         model = Problem
-#         fields = ['dataset', 'pb_type', 'cost_function', 'target', 'description', 'train_prop']
+
+class ProblemForm(ModelForm):
+    class Meta:
+        model = Problem
+        fields = ['dataset', 'pb_type']
