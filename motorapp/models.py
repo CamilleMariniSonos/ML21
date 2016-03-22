@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 class Dataset(models.Model):
     """
@@ -8,10 +10,13 @@ class Dataset(models.Model):
     :type raw_data: FileField, max_length=200, null=True, blank=True
     :type description: CharField, max_length=300, null=True, blank=True
     """
+    user = models.ForeignKey(User, null=True, blank=True)
     raw_data = models.FileField(max_length=100, null=True, blank=True)
     description = models.CharField(max_length=300, null=True, blank=True)
+
     def __unicode__(self):
         return self.description
+
 
 class Problem(models.Model):
     """Class about the problem table
