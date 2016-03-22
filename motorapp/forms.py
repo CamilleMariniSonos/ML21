@@ -2,18 +2,14 @@ from django import forms
 from django.forms import ModelForm
 from motorapp.models import Problem
 
+
 class UploadFileForm(forms.Form):
     # we do not use a ModelForm based on Dataset, since what is uploaded may
     # need to be modified before saving it as a dataset
-    description = forms.CharField(max_length=300, label='Describe the dataset content', \
-                                  help_text='blabla max: 300 char')
+    description = forms.CharField(max_length=300, label='Describe the dataset \
+                                  content', help_text='blabla max: 300 char')
     file = forms.FileField(max_length=100, label='Select a dataset file',
-                                   help_text='Read uploading instructions...')
-#    PB_CHOICES = (
-#        ('REG', 'regression'),
-#        ('CLF', 'classification'),
-#                  )
-#    pb_type = forms.ChoiceField(choices=PB_CHOICES, label='Type:')
+                           help_text='Read uploading instructions...')
 
 
 class ProblemForm(ModelForm):

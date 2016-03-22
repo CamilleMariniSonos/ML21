@@ -62,6 +62,8 @@ def run_analysis(request):
             context['error'] = 'problem in problem'
     else:
         form = ProblemForm()
+        form.fields["dataset"].queryset = Dataset.objects.\
+            filter(user=request.user)
     context['form'] = form
     return render_to_response('motorapp/run_analysis.html', context,
                               context_instance=RequestContext(request))
