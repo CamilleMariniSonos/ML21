@@ -17,9 +17,6 @@ The following environment variables need to be set:
 ### Todo
 
 Some ideas:  
-- [ ] discuss and design database structure  
-- [ ] command to upload data, and associated view and template  
-- [ ] view and template to define a problem associated with the dataset (classification, regression, or clustering)    
 - [ ] command to apply all existing scikit learn estimators to solve the problem  
 - [ ] view and template to compare the results of the different estimators (and details for each estimators: best parameters)
 
